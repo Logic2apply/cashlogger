@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -12,7 +14,7 @@
 </head>
 
 <body class="bg-gray-900">
-    {% load static %}
+
     <nav class="text-gray-400 bg-gray-900 body-font mb-1">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" href="/">
@@ -28,23 +30,38 @@
                 <a class="mr-5 hover:text-white" href="/about">About</a>
                 <a class="mr-5 hover:text-white" href="/contact">Contact Us</a>
             </nav>
-            <button
-                class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">Login
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
+            {% if user.is_authenticated %}
+            <button type="button" class="inline-flex items-center mr-3 mt-4 bg-gray-800 px-5 py-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 md:mt-0">
+                <div class="w-10 h-10 rounded-full inline-flex items-center justify-center bg-gray-600 text-gray-300 mr-2">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <span class="font-medium text-md">{{user.get_username}}</span>
             </button>
+                <button id="logoutBtn"
+                    class="inline-flex items-center bg-gray-800 border-0 py-3 px-3 focus:outline-none hover:bg-gray-700 rounded-full text-base mt-4 md:mt-0">
+                    <span class="material-icons">logout</span>
+                </button>
+            {% else %}
+                <button id="loginBtn"
+                    class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+                    <span class="material-icons">login</span>
+                </button>
+            {% endif %}
         </div>
     </nav>
 
     {% if messages %}
     <div id="messages" class="py-4 px-4">
         {% for message in messages %}
-        <div {% if message.tags %} class=" transition duration-500 ease-in-out shadow-xl {% if message.tags == "success" %} bg-yellow-500 hover:bg-yellow-600 {% else %} bg-red-500 hover:bg-red-600 {% endif %} border-0 py-3 px-3 m-5 focus:outline-none rounded text-base
-            text-white flex justify-between" {% endif %}>{{ message }}
+        <div class=" transition duration-500 ease-in-out shadow-xl {% if message.tags == "success" %} bg-yellow-500 hover:bg-yellow-600 {% else %} bg-red-500 hover:bg-red-600 {% endif %} border-0
+            py-3 px-3 m-5 focus:outline-none rounded text-base text-white flex justify-between">{{message}}
 
-            <button type="button" id="discard-message" class="transition duration-150 ease-in-out material-icons md-24 hover:md-48">clear</button>
+            <button type="button" id="discard-message"
+                class="transition duration-150 ease-in-out material-icons md-24 hover:md-48">clear</button>
         </div>
         {% endfor %}
     </div>

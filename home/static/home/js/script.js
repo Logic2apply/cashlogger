@@ -15,12 +15,12 @@ logoutBtn = document.getElementById("logoutBtn");
 
 if (loginBtn != null) {
     loginBtn.onclick = () => {
-        window.location = "/sign-in/";
+        window.location = "/authenticate/sign-in/";
     };
 };
 
 if (logoutBtn != null) {
     logoutBtn.onclick = () => {
-        window.location = "/logout/";
+        window.location = "/authenticate/logout/";
     };
 };

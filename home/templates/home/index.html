@@ -19,9 +19,9 @@
                     <span class="ml-2 material-icons">logout</span>
                 </a>
                 {% else %}
-                    <a href="/sign-up/"
+                    <a href="/authenticate/sign-up/"
                         class="inline-flex text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg">Sign Up</a>
-                    <a href="/sign-in/"
+                    <a href="/authenticate/sign-in/"
                         class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">Sign In</a>
                     
                 {% endif %}
@@ -38,7 +38,7 @@
 <span id="explore">
     {% if not user.is_authenticated %}
         <section class="text-gray-400 bg-gray-900 body-font">
-            <form action="/sign-in/" method="POST" class="container px-5 py-24 mx-auto flex flex-wrap items-center">{% csrf_token %}
+            <form action="/authenticate/sign-in/" method="POST" class="container px-5 py-24 mx-auto flex flex-wrap items-center">{% csrf_token %}
                 <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
                     <h1 class="title-font font-black text-4xl text-white">What are you waiting for?</h1>
                     <p class="leading-relaxed mt-4">Sign In now to maintain balance in your life. Signing Up doesn't takes your money, Its only to make relation with you...</p>

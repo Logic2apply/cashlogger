@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.db import models
 from django.utils.timezone import now
 
@@ -10,5 +11,7 @@ class Contact(models.Model):
     message = models.CharField(max_length=500, null=False)
     dateAdded = models.DateField(default=now)
 
+    resolved = models.BooleanField(default=False)
+
     def __str__(self) -> str:
-        return f"{self.message[:15]}... by {self.name} on {self.dateAdded}"
+        return f"{self.message[:100]}... by {self.name} on {self.dateAdded}"

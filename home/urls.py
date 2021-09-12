@@ -20,7 +20,4 @@ urlpatterns = [
     path('', views.index, name="home"),
     path('contact/', views.contactUs, name="contact"),
     path('about/', views.about, name="about"),
-    path('sign-up/', views.signUp, name="signUp"),
-    path('sign-in/', views.signIn, name="signIn"),
-    path('logout/', views.handleLogout, name="logout")
 ]

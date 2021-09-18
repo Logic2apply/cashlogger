@@ -54,12 +54,8 @@ def signIn(request):
         return redirect("/")
 
 
-@login_required(redirect_field_name="signIn")
+@login_required
 def handleLogout(request):
-    if User.is_authenticated:
-        logout(request)
-        messages.success(request, "Logout Successful.")
-        return redirect("/")
-
-    else:
-        return Http404
+    logout(request)
+    messages.success(request, "Logout Successful.")
+    return redirect("/")

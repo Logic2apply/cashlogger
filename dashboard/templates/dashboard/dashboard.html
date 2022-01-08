@@ -3,7 +3,8 @@
 
 {% block body %}
 
-<form action="/dashboard/" method="POST" class="text-gray-400 bg-gray-900 body-font relative">
+<form action="/dashboard/Ledger/" method="POST" class="text-gray-400 bg-gray-900 body-font relative">
+    {% csrf_token %}
     <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-12">
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Dashboard</h1>
@@ -41,14 +42,14 @@
                     <div class="relative">
                         <label for="particular" class="leading-7 text-sm text-gray-400">Particular</label>
                         <textarea id="particular" name="particular"
-                        class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-blue-500 focus:bg-gray-900 focus:ring-2 focus:ring-blue-900 h-24 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                        class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-blue-500 focus:bg-gray-900 focus:ring-2 focus:ring-blue-900 h-24 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" maxlength="300"></textarea>
                     </div>
                 </div>
                 <div class="p-2 w-full">
                     <div class="relative">
                         <label for="amount" class="leading-7 text-sm text-gray-400">Amount (in &#x20b9;)</label>
                         <input type="number" id="amount" name="amount" 
-                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-blue-500 focus:bg-gray-900 focus:ring-2 focus:ring-blue-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-blue-500 focus:bg-gray-900 focus:ring-2 focus:ring-blue-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" min="0">
                     </div>
                 </div>
                 <div class="p-2 w-full flex justify-center items-center">

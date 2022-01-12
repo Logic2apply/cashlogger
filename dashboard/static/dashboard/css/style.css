@@ -1,0 +1,13 @@
+.hoverable-edit{
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+/* .hoverable-edit:hover{
+    background-image: url('../images/more_horiz_white_24dp.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity: 50%;
+} */

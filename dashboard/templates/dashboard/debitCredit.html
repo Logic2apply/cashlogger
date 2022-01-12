@@ -1,20 +1,26 @@
 {% extends 'home/base.html' %}
 {% block title %}{{ debitCredit }}{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+{% endblock css %}
+
 {% block body %}
 <div class="container mx-auto">
     <h1 class="sm:text-4xl text-6xl font-black title-font my-5 text-white text-center">{{debitCredit}}</h1>
-    <div class="container my-3 flex">
-        <form action="/dashboard/Ledger/{{ debitCredit }}/" method="get" class="flex justify-between">
-            <div class="flex">
+    <div class="container my-3">
+        <form action="/dashboard/Ledger/{{ debitCredit }}/" method="get" class="flex sm:flex-row flex-col justify-evenly items-center flex-wrap">
+            <div class="flex items-center m-2">
                 <label class="text-gray-400 text-lg font-medium" for="sort">Sort: </label>
-                <select name="sort" id="sort" class="bg-gray-700 text-white text-sm font-light rounded mx-2">
+                <select name="sort" id="sort" class="bg-gray-700 text-white text-sm font-light rounded mx-2 p-2">
                     <option value="NewestFirst" {% if isNewestSelected %}selected{% endif %}>Newest First</option>
                     <option value="OldestFirst" {% if not isNewestSelected %}selected{% endif %}>Oldest First</option>
                 </select>
             </div>
-            <div class="flex">
+            <div class="flex items-center m-2">
                 <label for="date" class="text-gray-400 text-lg font-medium">Date: </label>
-                <input type="date" name="date" id="date" class="bg-gray-700 text-white text-sm font-light rounded mx-2 px-2">
+                <input type="date" name="date" id="date" class="bg-gray-700 text-white text-sm font-light rounded mx-2 p-2 m-2">
             </div>
             <button type="submit" class="bg-gray-800 rounded-full px-2 pt-2 pb-1 hover:bg-gray-700 justify-center items-center">
                 <span class="material-icons text-gray-200">
@@ -28,7 +34,7 @@
         <h3 class="text-xl font-medium text-white">{{ key }}</h3>
         <div class="flex flex-wrap m-4">
             {% for data in value %}
-                <div class="p-4 lg:w-1/4 bg-gray-800 hover:bg-gray-700 rounded-lg m-3">
+                <div class="p-4 lg:w-1/4 bg-gray-800 hover:bg-gray-700 rounded-lg m-3 hoverable-edit" id="ledger-id-{{ data.sno }}">
                     <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
                         <div class="flex-grow sm:pl-8">
                             <h2 class="title-font font-medium text-lg text-white"><strong>Amount: </strong> &#x20b9;{{ data.amount }}</h2>
@@ -39,6 +45,13 @@
                                     <strong>Date: </strong>{{ data.date }}
                                 </a>
                             </span>
+                            <div class="functions mt-3 flex justify-end items-center">
+                                <button class="text-red-400 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-600 bg-gray-700 material-icons" data-bs-delete-id="{{ data.sno }}">delete</button>
+
+                                <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-600 bg-gray-700 material-icons" data-bs-edit-id="{{ data.sno }}">edit</button>
+
+                                <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-600 bg-gray-700 material-icons" data-bs-more-id="{{ data.sno }}">read_more</button>
+                            </div>
                         </div>
                     </div>
                 </div>

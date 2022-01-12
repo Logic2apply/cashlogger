@@ -59,6 +59,6 @@ def debitCredit(request, debitCredit):
     dataset = {
         "dataset": date_partitioned,
         "debitCredit": debitCredit,
-        "isNewestSelected": (sort=="NewestFirst")
+        "isNewestSelected": (sort=="NewestFirst" or sort==None)
     }
     return render(request, "dashboard/debitCredit.html", dataset)

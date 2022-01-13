@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.http import HttpResponse
 from dashboard.models import Ledger
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -39,6 +40,7 @@ def debitCredit(request, debitCredit):
     username_enc = hashlib.sha256(username.encode('utf-8')).hexdigest()
     data = Ledger.objects.filter(debitCredit=debitCredit.lower(), username=username_enc)
 
+    # TODO: Pending Search By date
     searchByDate = request.GET.get("date")
     sort = request.GET.get("sort")
 
@@ -62,3 +64,27 @@ def debitCredit(request, debitCredit):
         "isNewestSelected": (sort=="NewestFirst" or sort==None)
     }
     return render(request, "dashboard/debitCredit.html", dataset)
+
+
+@login_required
+def delete_BySNO(request, sno):
+    # Get Username and encrypt
+    username = request.user.username
+    username_enc = hashlib.sha256(username.encode('utf-8')).hexdigest()
+    ledger = Ledger.objects.filter(sno = sno, username=username_enc)
+
+    if request.method == "GET":
+        redirector = request.GET.get("redirect")
+        if redirector is not None:
+            str(redirector).upper()
+            redirectTo = f"/dashboard/Ledger/{redirector}/"
+        else:
+            redirectTo = "/" # WHICH WILL BE DASHBOARD
+        
+    if ledger is not None:
+        ledger.delete()
+        messages.success(request, "Successfully deleted the required entry.")
+        return redirect(f"{redirectTo}")
+    else:
+        messages.error(request, "Can't delete the required entry please try again..!")
+        return redirect(f"{redirectTo}")

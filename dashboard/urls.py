@@ -19,5 +19,6 @@ from dashboard import views
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path('Ledger/', views.ledger, name="ledger"),
-    path('Ledger/<str:debitCredit>/', views.debitCredit, name="debitCredit")
+    path('Ledger/<str:debitCredit>/', views.debitCredit, name="debitCredit"),
+    path('Ledger/Delete/BySNO/<int:sno>/', views.delete_BySNO, name="deleteBySNO")
 ]

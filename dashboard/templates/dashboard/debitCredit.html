@@ -4,6 +4,8 @@
 {% block css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+
 {% endblock css %}
 
 {% block body %}
@@ -30,33 +32,45 @@
         </form>
     </div>
 
-    {% for key, value in dataset.items %}
-        <h3 class="text-xl font-medium text-white">{{ key }}</h3>
-        <div class="flex flex-wrap m-4">
-            {% for data in value %}
-                <div class="p-4 lg:w-1/4 bg-gray-800 hover:bg-gray-700 rounded-lg m-3 hoverable-edit" id="ledger-id-{{ data.sno }}">
-                    <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                        <div class="flex-grow sm:pl-8">
-                            <h2 class="title-font font-medium text-lg text-white"><strong>Amount: </strong> &#x20b9;{{ data.amount }}</h2>
-                            <h3 class="text-gray-400 mb-3"><strong>Name: </strong>{{ data.name }}</h3>
-                            <p class="text-gray-400 mb-4"><strong>Particular: </strong>{{ data.particular|slice:":100" }}...</p>
-                            <span class="inline-flex">
-                                <a class="text-gray-300 text-sm">
-                                    <strong>Date: </strong>{{ data.date }}
-                                </a>
-                            </span>
-                            <div class="functions mt-3 flex justify-end items-center">
-                                <button class="text-red-400 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-600 bg-gray-700 material-icons" data-bs-delete-id="{{ data.sno }}">delete</button>
+    {% if dataset|length != 0 %}
+        {% for key, value in dataset.items %}
+            <h3 class="text-xl font-medium text-white">{{ key }}</h3>
+            <div class="flex flex-wrap m-4">
+                {% for data in value %}
+                    <div class="p-4 lg:w-1/4 bg-gray-800 hover:bg-gray-700 rounded-lg m-3 hoverable-edit" id="ledger-id-{{ data.sno }}">
+                        <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                            <div class="flex-grow sm:pl-8">
+                                <h2 class="title-font font-medium text-lg text-white"><strong>Amount: </strong> &#x20b9;{{ data.amount }}</h2>
+                                <h3 class="text-gray-400 mb-3"><strong>Name: </strong>{{ data.name }}</h3>
+                                <p class="text-gray-400 mb-4"><strong>Particular: </strong>{{ data.particular|slice:":100" }}...</p>
+                                <span class="inline-flex">
+                                    <a class="text-gray-300 text-sm">
+                                        <strong>Date: </strong>{{ data.date }}
+                                    </a>
+                                </span>
+                                <div class="functions mt-3 flex justify-end items-center">
+                                    <button class="text-red-600 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons" data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ data.sno }}" id="del-{{ data.sno }}" onclick="delete_BySNO(this.id)">delete</button>
 
-                                <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-600 bg-gray-700 material-icons" data-bs-edit-id="{{ data.sno }}">edit</button>
+                                    <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons" data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ data.sno }}">edit</button>
 
-                                <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-600 bg-gray-700 material-icons" data-bs-more-id="{{ data.sno }}">read_more</button>
+                                    <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons" data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ data.sno }}">read_more</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="container bg-gray-800 hover:bg-gray-700 rounded-lg p-4 hoverable-edit m-5">
+            <h3 class="text-center text-bold font-xl text-gray-400 hover:text-gray-300 hoverable-edit">No Data Found. Make entries to get data.</h3>
         </div>
-    {% endfor %}
+    {% endif %}
 </div>
 {% endblock body %}
+
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'dashboard/js/script.js' %}"></script>
+{% endblock js %}

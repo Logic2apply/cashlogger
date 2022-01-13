@@ -10,6 +10,9 @@ if (message_btn != null){
     });
 };
 
+
+
+// Login and Logout
 loginBtn = document.getElementById("loginBtn");
 logoutBtn = document.getElementById("logoutBtn");
 

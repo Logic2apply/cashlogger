@@ -67,9 +67,9 @@
     <div id="messages" class="py-4 px-4">
         {% for message in messages %}
         <div class="shadow-xl {% if message.tags == "success" %} bg-yellow-500 hover:bg-yellow-600 {% else %} bg-red-500 hover:bg-red-600 {% endif %} border-0
-            py-3 px-3 m-5 focus:outline-none rounded text-base text-white flex justify-between">{{message}}
+            py-3 px-3 m-5 focus:outline-none rounded text-base text-white flex justify-between" id="message-{{forloop.counter}}">{{message}}
 
-            <button type="button" id="discard-message"
+            <button type="button" id="discard-message-{{forloop.counter}}" data-bs-counter="{{forloop.counter}}" onclick="clearMessage(this.id)"
                 class="transition duration-150 ease-in-out material-icons md-24 hover:md-48">clear</button>
         </div>
         {% endfor %}

@@ -20,5 +20,6 @@ urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path('Ledger/', views.ledger, name="ledger"),
     path('Ledger/<str:debitCredit>/', views.debitCredit, name="debitCredit"),
-    path('Ledger/Delete/BySNO/<int:sno>/', views.delete_BySNO, name="deleteBySNO")
+    path('Ledger/Delete/BySNO/<str:sno>/', views.delete_BySNO, name="deleteLedgerBySNO"),
+    path('Ledger/Update/<str:sno>/', views.viewEntry, name="updateLedger")
 ]

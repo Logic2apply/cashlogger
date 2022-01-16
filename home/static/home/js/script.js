@@ -1,14 +1,15 @@
-// Get The message Box and Button
-messageBox = document.getElementById("messages");
-message_btn = document.getElementById("discard-message");
+function clearMessage(id) {
+    // Get The message Box and Button
+    let messageBox = document.getElementById("messages");
+    let message_btn = document.getElementById(id);
 
-// Remove the element
-if (message_btn != null){
-    message_btn.addEventListener("click", ()=>{
-        message = message_btn.parentNode;
+    // Remove the element
+    if (message_btn != null){
+        let counter = message_btn.getAttribute('data-bs-counter'); // Forloop counter
+        let message = document.getElementById(`message-${counter}`);
         messageBox.removeChild(message);
-    });
-};
+    };
+}
 
 
 

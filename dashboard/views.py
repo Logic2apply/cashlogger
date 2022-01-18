@@ -100,7 +100,7 @@ def delete_BySNO(request, sno):
 
 
 @login_required
-def viewEntry(request, sno):
+def updateEntry(request, sno):
     # Get user and decrypt the sno
     username = request.user
     decrypt_sno = decrypt(sno)
@@ -141,8 +141,37 @@ def viewEntry(request, sno):
     if ledger is not None:
         data = {
             "entry" : ledger,
+            "requestor" : "Update",
             "encrypt_sno" : sno,
             "decrypt_sno" : decrypt_sno,
-            "redirect_to" : redirectTo
+            "redirect_to" : redirectTo,
+        }
+        return render(request, 'dashboard/update.html', data)
+
+
+@login_required
+def viewEntry(request, sno):
+    # Get user and decrypt the sno
+    username = request.user
+    decrypt_sno = decrypt(sno)
+
+    # Redirector
+    if request.method == "GET":
+        redirector = request.GET.get("redirect")
+        if redirector is not None:
+            str(redirector).upper()
+            redirectTo = f"/dashboard/Ledger/{redirector}/"
+        else:
+            redirectTo = "/" # WHICH WILL BE DASHBOARD
+
+
+    ledger = Ledger.objects.filter(sno = decrypt_sno, username = username)[0]
+    if ledger is not None:
+        data = {
+            "entry" : ledger,
+            "requestor" : "View",
+            "encrypt_sno" : sno,
+            "decrypt_sno" : decrypt_sno,
+            "redirect_to" : redirectTo,
         }
         return render(request, 'dashboard/update.html', data)

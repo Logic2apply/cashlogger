@@ -15,9 +15,9 @@ function updateEntry(id) {
     window.location = `/dashboard/Ledger/Update/${dataID}/?redirect=${redirect}`;
 };
 
-function readEntry(id) {
+function viewEntry(id) {
     let item = document.getElementById(id);
     let redirect = item.getAttribute('data-bs-debitCredit');
     let dataID = item.getAttribute("data-bs-id");
-    window.location = `/dashboard/Ledger/Update/${dataID}/?redirect=${redirect}`;
+    window.location = `/dashboard/Ledger/View/${dataID}/?redirect=${redirect}`;
 };

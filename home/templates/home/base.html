@@ -5,8 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PWA -->
+    {% load pwa %}
+    {% progressive_web_app_meta %}
+
+
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'home/images/logo/cashlogger_logo.svg' %}" type="image/x-icon">
     <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,11 +30,12 @@
     <nav class="text-gray-400 bg-gray-900 body-font mb-1">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" href="/">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-yellow-500 rounded-full"
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-amber-500 rounded-full"
                     viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
+                </svg> -->
+                <img src="{% static 'home/images/logo/cashlogger_logo.svg' %}" alt="cashlogger_logo" class="w-14 h-14 p-2 rounded-full">
                 <span class="ml-3 text-xl">Cash Logger</span>
             </a>
             <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
@@ -66,7 +75,7 @@
     {% if messages %}
     <div id="messages" class="py-4 px-4">
         {% for message in messages %}
-        <div class="shadow-xl {% if message.tags == "success" %} bg-yellow-500 hover:bg-yellow-600 {% else %} bg-red-500 hover:bg-red-600 {% endif %} border-0
+        <div class="shadow-xl {% if message.tags == "success" %} bg-amber-500 hover:bg-amber-600 {% else %} bg-red-500 hover:bg-red-600 {% endif %} border-0
             py-3 px-3 m-5 focus:outline-none rounded text-base text-white flex justify-between" id="message-{{forloop.counter}}">{{message}}
 
             <button type="button" id="discard-message-{{forloop.counter}}" data-bs-counter="{{forloop.counter}}" onclick="clearMessage(this.id)"
@@ -84,11 +93,12 @@
     <footer class="text-gray-400 bg-gray-900 body-font mt-52">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white" href="/">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-yellow-500 rounded-full"
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-amber-500 rounded-full"
                     viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
+                </svg> -->
+                <img src="{% static 'home/images/logo/cashlogger_logo.svg' %}" alt="cashlogger_logo" class="w-14 h-14 p-2 rounded-full">
                 <span class="ml-3 text-xl">Cash Logger</span>
             </a>
             <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">©

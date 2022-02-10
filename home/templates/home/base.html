@@ -47,6 +47,7 @@
                     <a class="mr-5 hover:text-white" href="/dashboard/Ledger/Debit">Debit</a>
                     <a class="mr-5 hover:text-white" href="/dashboard/Ledger/Credit">Credit</a>
                 {% endif %}
+                <button class="mr-5 hover:text-white" id="buttonInstallHead" onclick="InstallApp(this.id)">Install</button>
             </nav>
             {% if user.is_authenticated %}
             <button type="button" class="inline-flex items-center mr-3 mt-4 bg-gray-800 px-5 py-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 md:mt-0">
@@ -84,6 +85,17 @@
         {% endfor %}
     </div>
     {% endif %}
+
+    <div class="w-full h-full backdrop-blur-lg fixed inset-0 flex items-center justify-center z-40" id="installPrompt">
+        <div class="flex bg-gray-800 text-white w-3/4 h-3/4 rounded-3xl flex-col">
+            <button class="border-0 py-1 px-3 rounded-3xl m-4 material-icons self-end justify-self-start" id="clearInstallPrompt">clear</button>
+            <div class="flex flex-col justify-center items-center self-center justify-self-center my-auto">
+                <div class="text-4xl font-extrabold text-center my-4">Install App</div>
+                <div class="text-lg font-normal text-center text-gray-500 my-4">Install our Progressive Web App (PWA) to get immersive experience.</div>
+                <button id="buttonInstallPromotion" class="mx-auto bg-gray-600 hover:bg-gray-500 text-gray-300 my-4 px-5 py-4 font-semibold text-center text-4xl border-0 rounded-full material-icons">get_app</button>
+            </div>
+        </div>
+    </div>
 
     {% block body %}
 
@@ -145,6 +157,7 @@
 
     {% endblock js %}
     <script src="{% static 'home/js/script.js' %}"></script>
+    <script src="{% static 'home/js/app.js' %}"></script>
 
 </body>
 

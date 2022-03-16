@@ -2,9 +2,9 @@
 {% block title %}{{ debitCredit }}{% endblock title %}
 
 {% block css %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
+{% load static %}
+<link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+<script src="https://cdn.tailwindcss.com"></script>
 
 {% endblock css %}
 
@@ -12,7 +12,8 @@
 <div class="container mx-auto">
     <h1 class="sm:text-4xl text-6xl font-black title-font my-5 text-white text-center">{{debitCredit}}</h1>
     <div class="container my-3">
-        <form action="/dashboard/Ledger/{{ debitCredit }}/" method="get" class="flex sm:flex-row flex-col justify-evenly items-center flex-wrap">
+        <form action="/dashboard/Ledger/{{ debitCredit }}/" method="get"
+            class="flex sm:flex-row flex-col justify-evenly items-center flex-wrap">
             <div class="flex items-center m-2">
                 <label class="text-gray-400 text-lg font-medium" for="sort">Sort: </label>
                 <select name="sort" id="sort" class="bg-gray-700 text-white text-sm font-light rounded mx-2 p-2">
@@ -22,9 +23,11 @@
             </div>
             <div class="flex items-center m-2">
                 <label for="date" class="text-gray-400 text-lg font-medium">Date: </label>
-                <input type="date" name="date" id="date" class="bg-gray-700 text-white text-sm font-light rounded mx-2 p-2 m-2">
+                <input type="date" name="date" id="date"
+                    class="bg-gray-700 text-white text-sm font-light rounded mx-2 p-2 m-2">
             </div>
-            <button type="submit" class="bg-gray-800 rounded-full px-2 pt-2 pb-1 hover:bg-gray-700 justify-center items-center">
+            <button type="submit"
+                class="bg-gray-800 rounded-full px-2 pt-2 pb-1 hover:bg-gray-700 justify-center items-center">
                 <span class="material-icons text-gray-200">
                     done
                 </span>
@@ -33,44 +36,57 @@
     </div>
 
     {% if dataset|length != 0 %}
-        {% for key, value in dataset.items %}
-            <h3 class="text-xl font-medium text-white">{{ key }}</h3>
-            <div class="flex flex-wrap m-4">
-                {% for data, encSNO in value.items %}
-                    <div class="p-4 lg:w-1/4 bg-gray-800 hover:bg-gray-700 rounded-lg m-3 hoverable-edit" id="ledger-id-{{ encSNO }}">
-                        <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                            <div class="flex-grow sm:pl-8">
-                                <h2 class="title-font font-medium text-lg text-white"><strong>Amount: </strong> &#x20b9;{{ data.amount }}</h2>
-                                <h3 class="text-gray-400 mb-3"><strong>Name: </strong>{{ data.name }}</h3>
-                                <p class="text-gray-400 mb-4"><strong>Particular: </strong>{{ data.particular|slice:":100" }}...</p>
-                                <span class="inline-flex">
-                                    <a class="text-gray-300 text-sm">
-                                        <strong>Date: </strong>{{ data.date }}
-                                    </a>
-                                </span>
-                                <div class="functions mt-3 flex justify-end items-center">
-                                    <button class="text-red-600 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons" data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ encSNO }}" id="del-{{ encSNO }}" onclick="deleteEntryBySNO(this.id)">delete</button>
+    {% for key, value in dataset.items %}
+    <h3 class="text-xl font-medium text-white">{{ key }}</h3>
+    <div class="flex flex-wrap m-4">
+        {% for data, encSNO in value.items %}
+        <div class="p-4 lg:w-1/4 bg-gray-800 hover:bg-gray-700 rounded-lg m-3 hoverable-edit"
+            id="ledger-id-{{ encSNO }}">
+            <div
+                class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                <div class="flex-grow sm:pl-8">
+                    <h2 class="title-font font-medium text-lg text-white"><strong>Amount: </strong> &#x20b9;{{
+                        data.amount }}</h2>
+                    <h3 class="text-gray-400 mb-3"><strong>Name: </strong>{{ data.name }}</h3>
+                    <p class="text-gray-400 mb-4"><strong>Particular: </strong>{{ data.particular|slice:":100" }}...</p>
+                    <span class="inline-flex">
+                        <a class="text-gray-300 text-sm">
+                            <strong>Date: </strong>{{ data.date }}
+                        </a>
+                    </span>
+                    <div class="functions mt-3 flex justify-end items-center">
+                        <button
+                            class="text-red-600 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons"
+                            data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ encSNO }}" id="del-{{ encSNO }}"
+                            onclick="deleteEntryBySNO(this.id)">delete</button>
 
-                                    <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons" data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ encSNO }}" id="edit-{{ encSNO }}" onclick="updateEntry(this.id)">edit</button>
+                        <button
+                            class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons"
+                            data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ encSNO }}" id="edit-{{ encSNO }}"
+                            onclick="updateEntry(this.id)">edit</button>
 
-                                    <button class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons" data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ encSNO }}" id="read-{{ encSNO }}" onclick="viewEntry(this.id)">read_more</button>
-                                </div>
-                            </div>
-                        </div>
+                        <button
+                            class="text-gray-200 m-2 rounded-full px-3 py-3 hoverable-edit hover:bg-gray-800 bg-gray-900 material-icons"
+                            data-bs-debitCredit="{{ debitCredit }}" data-bs-id="{{ encSNO }}" id="read-{{ encSNO }}"
+                            onclick="viewEntry(this.id)">read_more</button>
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        {% endfor %}
-    {% else %}
-        <div class="container bg-gray-800 hover:bg-gray-700 rounded-lg p-4 hoverable-edit mx-5 my-24">
-            <h3 class="text-center text-bold font-xl text-gray-400 hover:text-gray-300 hoverable-edit">No Data Found. Make entries to get data.</h3>
         </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="container bg-gray-800 hover:bg-gray-700 rounded-lg p-4 hoverable-edit mx-5 my-24">
+        <h3 class="text-center text-bold font-xl text-gray-400 hover:text-gray-300 hoverable-edit">No Data Found. Make
+            entries to get data.</h3>
+    </div>
     {% endif %}
 </div>
 {% endblock body %}
 
 
 {% block js %}
-    {% load static %}
-    <script src="{% static 'dashboard/js/script.js' %}"></script>
+{% load static %}
+<script src="{% static 'dashboard/js/script.js' %}"></script>
 {% endblock js %}

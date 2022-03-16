@@ -1,4 +1,4 @@
-{% extends 'Home/base.html' %}
+{% extends 'home/base.html' %}
 {% block title %}Sign Up{% endblock title %}
 
 {% block body %}
@@ -7,7 +7,8 @@
         {% csrf_token %}
         <div class="flex flex-col text-center w-full mb-12">
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Sign Up</h1>
-            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Sign Up now to unlock your cool way to manage your money..! Signing Up doesn't takes your money, Its only to make relation with you...</p>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Sign Up now to unlock your cool way to manage your
+                money..! Signing Up doesn't takes your money, Its only to make relation with you...</p>
         </div>
         <div class="lg:w-1/2 md:w-2/3 mx-auto">
             <div class="flex flex-wrap -m-2">
@@ -15,52 +16,59 @@
                     <div class="relative">
                         <label for="username" class="leading-7 text-sm text-gray-400">Username</label>
                         <input type="text" id="username" name="username"
-                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" autocomplete="username" required>
+                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            autocomplete="username" required>
                     </div>
                 </div>
                 <div class="p-2 w-1/2">
                     <div class="relative">
                         <label for="firstname" class="leading-7 text-sm text-gray-400">First Name</label>
                         <input type="text" id="firstname" name="firstname"
-                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" autocomplete="name" required>
+                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            autocomplete="name" required>
                     </div>
                 </div>
                 <div class="p-2 w-1/2">
                     <div class="relative">
                         <label for="lastname" class="leading-7 text-sm text-gray-400">Last name</label>
                         <input type="text" id="lastname" name="lastname"
-                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" autocomplete="name" required>
+                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            autocomplete="name" required>
                     </div>
                 </div>
                 <div class="p-2 w-full">
                     <div class="relative">
                         <label for="email" class="leading-7 text-sm text-gray-400">Email</label>
                         <input type="email" id="email" name="email"
-                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" autocomplete="email" required>
+                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            autocomplete="email" required>
                     </div>
                 </div>
                 <div class="p-2 w-1/2">
                     <div class="relative">
                         <label for="pass1" class="leading-7 text-sm text-gray-400">Choose Password</label>
                         <input type="password" id="pass1" name="pass1"
-                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" autocomplete="new-password" required minlength="8">
+                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            autocomplete="new-password" required minlength="8">
                     </div>
                 </div>
                 <div class="p-2 w-1/2">
                     <div class="relative">
                         <label for="pass2" class="leading-7 text-sm text-gray-400">Confirm Password</label>
                         <input type="password" id="pass2" name="pass2"
-                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" autocomplete="new-password" required minlength="8">
+                            class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            autocomplete="new-password" required minlength="8">
                     </div>
                 </div>
-                
+
                 <div class="p-2 w-full">
                     <button
-                        class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg" type="submit">Sign Up</button>
+                        class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg"
+                        type="submit">Sign Up</button>
                 </div>
                 <div class="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
                     Already Registered? <a href="/authenticate/sign-in/" class="text-yellow-500">Sign In</a> here.
-                    
+
                 </div>
             </div>
         </div>

@@ -85,6 +85,14 @@ WSGI_APPLICATION = 'cashlogger.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 if config('DATABASE_TYPE') == 'sqlite3':
     DATABASES = {
         'default': {
@@ -93,14 +101,7 @@ if config('DATABASE_TYPE') == 'sqlite3':
         }
 }
 elif config('DATABASE_TYPE') == 'postgres':
-    DATABASES = dj_database_url.config(default=config('DATABASE_URL'))
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+    DATABASES['default'] = dj_database_url.config(default=config('DATABASE_URL'))
 
 
 # Password validation

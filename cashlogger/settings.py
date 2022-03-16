@@ -171,7 +171,23 @@ PWA_APP_ICONS = [
     {
         'src': '/static/home/images/logo/my_app_icon.png',
         'sizes': '160x160'
-    }
+    },
+    {
+        'src': '/static/home/images/logo/cashlogger_logo1x.png',
+        'sizes': '128x129'
+    },
+    {
+        'src': '/static/home/images/logo/cashlogger_logo2x.png',
+        'sizes': '256x257'
+    },
+    {
+        'src': '/static/home/images/logo/cashlogger_logo3x.png',
+        'sizes': '512x513'
+    },
+    {
+        'src': '/static/home/images/logo/cashlogger_logo4x.png',
+        'sizes': '1024x1025'
+    },
 ]
 PWA_APP_ICONS_APPLE = [
     {

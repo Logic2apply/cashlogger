@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from decouple import config
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -172,5 +173,9 @@ PWA_APP_SPLASH_SCREEN = [
 ]
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-US'
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'home', 'home/js/serviceworker.js')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'home', 'static\\home\\js\\serviceworker.js')
 PWA_APP_DEBUG_MODE = True
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

@@ -30,7 +30,10 @@ ENCRYPT_KEY = str(config('ENCRYPT_KEY')).encode('ascii')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://cashlogger-visualiser.herokuapp.com',
+    '127.0.0.1:8000'
+]
 
 
 # Application definition
